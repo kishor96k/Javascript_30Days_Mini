@@ -1,11 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Age Calculator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+        </script>
+
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 100%;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #4203a9, #90abfc);
+            color: #fff;
+            padding: 10px;
+        }
+
+        .calculator {
+            width: 100%;
+            max-width: 600px;
+            margin-left: 10%;
+            margin-top: 10%;
+        }
+
+        h4 {
+            font-size: 60px;
+        }
+
+        #date {
+            width: 330px;
+        }
+    </style>
+
 </head>
+
 <body>
-    
+
+    <div class="container">
+        <div class="calculator">
+            <h4>Age Calculator</h4>
+            <div class="input-box">
+                <input class="form-control" type="date" name="" id="date">
+                <br> <button class="btn btn-info" onclick="calculateAge()">Calculator</button>
+            </div>
+            <div class="row">
+                <strong>
+                    <p id="result"></p>
+                </strong>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        let userinput = document.getElementById('date');
+        userinput.max = new Date().toISOString().split('T')[0];
+
+        let result = document.getElementById('result');
+        function calculateAge() {
+
+            //diffrence
+            let birthDate = new Date(userinput.value);
+            let d1 = birthDate.getDate();
+            let m1 = birthDate.getMonth() + 1;
+            let y1 = birthDate.getFullYear();
+
+            //current
+            let today = new Date();
+            let d2 = today.getDate();
+            let m2 = today.getMonth() + 1;
+            let y2 = today.getFullYear();
+
+            let d3, m3, y3;
+            y3 = y2 - y1;
+
+            if (m2 >= m1) {
+                m3 = m2 - m1;
+            } else {
+                y3--;
+                m3 = 12 + m2 - m1;
+            }
+            if (d2 >= d1) {
+                d3 = d2 - d1;
+            } else {
+                m3--;
+                d3 = getDaysInMonths(y1, m1) + d2 - d1;
+            }
+
+            if (m3 < 0) {
+                m3 = 11;
+                y3--;
+            }
+
+
+            result.innerHTML = `u are ${y3} years ${m3} months and ${d3} old`
+            console.log(y3, m3, d3);
+
+        }
+
+        function getDaysInMonths(year, month) {
+            return new Date(year, month, 0).getDate();
+        }
+    </script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
+        </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous">
+        </script>
+
 </body>
+
 </html>
