@@ -12,10 +12,72 @@
         </script>
 
     <style>
-        *{
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        body {
+            background: #bbc6fa;
+        }
+
+        .quote-box {
+            background: #fff;
+            width: 700px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.15);
+        }
+
+        h2 {
+            font-size: 32px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            width: 75px;
+            height: 3px;
+            border-radius: 3px;
+            background: rgb(23, 124, 229);
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        blockquote {
+            font-size: 28px;
+            min-height: 110px;
+        }
+
+        blockquote ::before,
+        blockquote ::after {
+            content: '';
+        }
+
+        span {
+            display: block;
+            margin-top: 10px;
+            float: right;
+            position: relative;
+        }
+
+        span::before {
+            content: '';
+            width: 20px;
+            height: 20px;
+            background: rgb(23, 124, 129);
+            position: absolute;
+            top: 30%;
+            left: -30px;
         }
     </style>
 
@@ -23,6 +85,37 @@
 
 <body>
 
+    <div class="quote-box">
+        <h2 class="quote-heading">Quote of the day</h2>
+        <blockquote id="quote">Loading...</blockquote>
+        <span id="quthor">Loading</span>
+
+        <div class="">
+            <button class="btn btn-success" onclick="getQuote(api_url)">Generate</button>
+            <button class="btn btn-danger" onclick="generateTwit()">Tweet</button>
+        </div>
+    </div>
+
+
+    <script>
+        const author = document.getElementById('author');
+        const quote = document.getElementById('quote');
+
+
+        let api_url = 'https://api.quotable.io/random';
+
+        async function getQuote(url) {
+            const response = await fetch(url);
+            var data = await response.json();
+            author.innerHTML = data.author;
+            quote.innerHTML = data.content;
+        }
+        getQuote(api_url);
+
+        function generateTwit() {
+            window.open('https://twitter.com/intent/tweet?text=' + quote.innerHTML + '---by' + author.innerHTML, 'TweetWindow', 'width=600', 'height=300');
+        }
+    </script>
 
 
 
