@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark/Light Mode Toggle</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WyWi1WPFloUJ8kej6tF5Bk1tbk6UHA8TY" crossorigin="anonymous">
+    <style>
+        body.dark-mode {
+            background-color: #333;
+            color: #fff;
+        }
+
+        .toggle-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .toggle-container img {
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="toggle-container">
+            <img src="../1_WeatherApp/images/drizzle.png" alt="Light Mode" id="toggleMode">
+        </div>
+    </div>
+
+    <script>
+        const toggleModeButton = document.getElementById('toggleMode');
+        const body = document.body;
+        toggleModeButton.onclick = function () {
+            body.classList.toggle('dark-mode');
+        }
+    </script>
+
+</body>
+
+</html>
