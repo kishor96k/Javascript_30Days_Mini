@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Slider Gallery</title>
+    <title>Email Subscription</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
@@ -18,13 +18,53 @@
             box-sizing: border-box;
         }
 
+        .hero {
+            width: 100%;
+            height: 100vh;
+        }
     </style>
 
 
 </head>
 
 <body>
+    <div class="container">
+        <div class="row d-flex align-items-center-justify-content-center">
+            <div class="col-md-5">
+                <div class="hero">
+                    <h3>Coming Soon</h3>
+                    <h1>Ourbrand New<br>Website</h1>
+                    <p>subscribe for more details</p>
+                    <form action="" name="submit-to-google-sheet">
+                        <input type="email" placeholder="enter ur mail" required class="form-control mt-2 mb-2" name=""
+                            id="">
+                        <button class="btn btn-success mt-2 mb-2">Send</button>
+                    </form>
+                    <span class="text-info" id="msg"><strong></strong></span>
+                </div>
+            </div>
+        </div>
+    </div>
 
+
+    <script>
+        const scriptURl = '<scripturl>';
+        const form = document.forms['submit-to-google-sheet'];
+        const msg = document.getElementById('msg');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            fetch(scriptURl, { method: 'POST', body: new FormData(form) }).then((response) => {
+                msg.innerHTML = 'Thank you for reaching out';
+                setTimeout(() => {
+                    msg.innerHTML = '';
+                }, 3000);
+                form.reset();
+            }).catch((err) => {
+                console.log('Error', err);
+            });
+        });
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
