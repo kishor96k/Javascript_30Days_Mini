@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circular Progress Bar</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-HfsJ3v8g9hbyv6UeuH9bDqp7zC+3BxnVzqEV9HBD4tr5q4szxFI1f2GJbqFkTvA7" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .circular-progress {
+            width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .circular-progress .progress-circle {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            clip: rect(0, 120px, 120px, 60px);
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h2>Circular Progress Bars</h2>
+
+        <div class="circular-progress">
+            <div id="progressCircle1" class="progress-circle"></div>
+            <div id="progressBar1" class="progress-bar bg-primary rounded-circle" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+
+        <div class="circular-progress">
+            <div id="progressCircle2" class="progress-circle"></div>
+            <div id="progressBar2" class="progress-bar bg-success rounded-circle" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+
+        <div class="circular-progress">
+            <div id="progressCircle3" class="progress-circle"></div>
+            <div id="progressBar3" class="progress-bar bg-warning rounded-circle" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+    </div>
+
+    <script>
+        function updateCircularProgressBar(circleId, barId, percentage) {
+            const progressBar = document.getElementById(barId);
+            progressBar.style.width = percentage + '%';
+
+            const progressCircle = document.getElementById(circleId);
+            const angle = percentage * 3.6; // 3.6 degrees for each percentage
+            progressCircle.style.transform = `rotate(${angle}deg)`;
+        }
+
+        setTimeout(function () {
+            updateCircularProgressBar('progressCircle1', 'progressBar1', 25);
+        }, 1000);
+
+        setTimeout(function () {
+            updateCircularProgressBar('progressCircle2', 'progressBar2', 50);
+        }, 2000);
+
+        setTimeout(function () {
+            updateCircularProgressBar('progressCircle3', 'progressBar3', 75);
+        }, 3000);
+    </script>
+</body>
+
+</html>
