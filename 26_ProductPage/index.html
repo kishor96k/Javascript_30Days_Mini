@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+
+    <div class="container mt-5">
+        <div class="row">
+            <!-- Product Image Section -->
+            <div class="col-md-6">
+                <img src="../21_Bacground_change_Effect/dog.jpg" alt="Product Image" class="img-fluid">
+            </div>
+
+            <!-- Product Details Section -->
+            <div class="col-md-6 mx-auto">
+                <h2>Product Name</h2>
+                <p class="text-muted">Category: Product Category</p>
+                <p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in justo eu justo
+                    congue accumsan.</p>
+                <p>Price: $19.99</p>
+
+                <!-- Quantity Selector -->
+                <div class="mb-3">
+                    <label for="quantity" class="form-label">Quantity:</label>
+                    <input type="number" id="quantity" class="form-control" value="1" min="1">
+                </div>
+
+                <!-- Add to Cart Button -->
+                <button class="btn btn-primary" onclick="addToCart()">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        function addToCart() {
+            // Add your logic to handle adding the product to the cart
+            alert('Product added to cart!');
+        }
+    </script>
+</body>
+
+</html>
